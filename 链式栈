@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cstdlib>
+#define MAXSIZE 100
+using namespace std;
+class Node{
+	public:
+		int data;
+		class Node *next;
+};
+typedef class Node Stack_Node;
+typedef Stack_Node *Link_Node;
+Link_Node top=NULL;
+int IsEmpty(){
+	if(top==NULL)
+		return -1;
+	else
+		return 0;
+}
+void PushData(int data){
+	Link_Node newnode;
+	newnode=new Stack_Node;
+	newnode->data=data;
+	newnode->next=top;
+	top=newnode;
+}
+int PopData(){
+	Link_Node ptr;
+	int temp;
+	if(IsEmpty()==-1){
+		cout<<"栈已空"<<endl;
+		return -1;
+	}
+	else{
+		ptr=top;
+		top=top->next;
+		temp=ptr->data;
+		free(ptr);
+		return temp;
+	}
+}
+int main(void){
+	int value,i;
+	cout<<"输入三个数"<<endl;
+	for(i=0;i<3;i++){
+		cin>>value;
+		PushData(value);
+	}
+	while(IsEmpty()!=-1){
+		cout<<"弹出的数是"<<PopData()<<endl;
+	}
+	system("pause");
+	return 0;
+}
