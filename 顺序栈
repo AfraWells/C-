@@ -1,0 +1,41 @@
+#include <iostream>
+#define MAXSIZE 100
+using namespace std;
+int stack[MAXSIZE];
+int top=-1;
+int IsEmpty(){
+	if(top==-1)
+	return -1;
+	else
+	return 0;
+}
+int PushData(int data){
+	if(top>MAXSIZE){
+		cout<<"栈已满，无法继续压入"<<endl;
+		return -1;
+	}
+	else
+	{
+		stack[++top]=data;
+		return 0;
+	}
+}
+int Pop(){
+	if(IsEmpty()==-1)
+		return -1;
+	else
+		return stack[top--];
+}
+int main(void){
+	int value;
+	int i;
+	cout<<"请输入3个数据"<<endl;
+	for(i=0;i<3;i++){
+		cin>>value;
+		PushData(value);
+	}
+	while(IsEmpty()!=-1){
+		cout<<"堆栈弹出的顺序是："<<Pop()<<endl;
+	}
+	return 0;
+}
